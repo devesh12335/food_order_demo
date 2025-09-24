@@ -61,14 +61,14 @@ Future<void> main() async {
   // Dio client
   final dio = orderApi.dio;
 
-  // 1️⃣ Get all orders
+  // Get all orders
   final responseAll = await dio.get(ApiConstants.getAllOrders);
   print("All Orders:");
   print(responseAll.data);
 
 
 
-  // 3️⃣ Create order
+  //  Create order
   final responseCreate = await dio.post(ApiConstants.placeNewOrder, queryParameters: {
     "id": 3,
     "userId": 103,
@@ -80,10 +80,12 @@ Future<void> main() async {
   print("Created Order:");
   print(responseCreate.data);
 
-    // 2️⃣ Get single order
+    //  Get single order
   final responseSingle = await dio.get("${ApiConstants.getSingleOrder}/1");
   print("Single Order (ID=1):");
   print(responseSingle.data);
+
+  
   runApp(const MyApp());
 }
 
