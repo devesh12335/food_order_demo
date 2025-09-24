@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:food_orders/constants/api_constants.dart';
-import 'package:food_orders/prsentation/resources/router/route_manager.dart';
-import 'package:food_orders/prsentation/resources/theme/theme_manager.dart';
+import 'package:food_orders/presentation/resources/router/route_manager.dart';
+import 'package:food_orders/presentation/resources/theme/theme_manager.dart';
 import 'package:food_orders/services/mock_api/food_item_api.dart';
 import 'package:food_orders/services/mock_api/order_api.dart';
 import 'package:food_orders/services/mock_api/store_api.dart';
@@ -85,7 +85,7 @@ Future<void> main() async {
   print("Single Order (ID=1):");
   print(responseSingle.data);
 
-  
+
   runApp(const MyApp());
 }
 
