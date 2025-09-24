@@ -19,18 +19,28 @@ Future<void> main() async {
   FoodItemApi _food_mock = FoodItemApi();
   _food_mock.getFoodItems();
   _food_mock.searchFoodItems(query1: {"search": "pizza"});
+  _food_mock.getSingleFoodItem(id: 2);
 
   final response1 = await _food_mock.dio.get("${ApiConstants.baseUrl}${ApiConstants.getAllFood}") ;
 print("Api Responce Food Items All${response1.data}");
 print("Api Responce Main Url ${ApiConstants.baseUrl}${ApiConstants.searchFood}");
     final response = await _food_mock.dio.post(
     "${ApiConstants.baseUrl}${ApiConstants.searchFood}",
-    queryParameters: {"search": "pizza"}, // the request body doesn't affect filtering here
+    queryParameters: {"search": "pizza"}, 
   );
 
   // 4. Print the returned data
   print("Search API response:");
   print(response.data);
+
+   final response2 = await _food_mock.dio.get(
+    "${ApiConstants.baseUrl}${ApiConstants.getSingleFood}/2",
+   
+  );
+
+  // 4. Print the returned data
+  print("Single Food API response:");
+  print(response2.data);
 
   runApp(const MyApp());
 }

@@ -51,6 +51,39 @@ class FoodItemApi {
   );
 }
 
+void getSingleFoodItem({required int id}) {
+  print("Path from getSingleFoodItemApi - ${ApiConstants.getSingleFood}/$id");
+
+  dioAdapter!.onGet(
+    "${ApiConstants.baseUrl}${ApiConstants.getSingleFood}/$id", 
+    (server) {
+      Map<String, Object>? item; 
+
+      
+      for (final f in fake_food_items['data']) {
+        if (f['id'] == id) {
+          item = Map<String, Object>.from(f); 
+          break;
+        }
+      }
+      if (item != null) {
+        return server.reply(
+          200,
+          {"data": item},
+          delay: const Duration(seconds: 1),
+        );
+      } else {
+        return server.reply(
+          404,
+          {"error": "Food item not found"},
+          delay: const Duration(seconds: 1),
+        );
+      }
+    },
+  );
+}
+
+
 
  
 }
