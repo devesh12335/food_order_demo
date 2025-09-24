@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:food_orders/constants/api_constants.dart';
+import 'package:food_orders/services/mock_data/fake_stores.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 
 class StoreApi {
@@ -16,7 +17,7 @@ class StoreApi {
     "${ApiConstants.baseUrl}${ApiConstants.getStores}",
     (server) => server.reply(
       200,
-      {"messgae":"Sdsdfsdf"},
+      fakestores,
       // Reply would wait for one-sec before returning data.
       delay: const Duration(seconds: 1),
     ),
