@@ -11,37 +11,40 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => SplashBloc()..add(SplashInitEvent()),
-      child: BlocConsumer<SplashBloc, SplashState>(
-        listener: (context, state) {
-          if(state.status == SplashStatus.loaded){
-            Future.delayed(Duration(seconds: 3),(){
-              Navigator.pushNamedAndRemoveUntil(context, Routes.homePage, (_)=>false);
-            });
-          }
-          // handle navigation or snackbars
-        },
-        builder: (context, state) {
-          switch (state.status) {
-            case SplashStatus.initial:
-              return const Scaffold(
-                body: Center(child: CircularProgressIndicator()),
-              );
-            case SplashStatus.loaded:
-              return SplashLoadedPage();
-            case SplashStatus.error:
-              return Scaffold(
-                body: Center(
-                  child: Text(state.error ?? "An error occurred"),
-                ),
-              );
-            default:
-              return const Scaffold(
-                body: Center(child: Text("Unknown state")),
-              );
-          }
-        },
+    return PopScope(
+      canPop: false,
+      child: BlocProvider(
+        create: (_) => SplashBloc()..add(SplashInitEvent()),
+        child: BlocConsumer<SplashBloc, SplashState>(
+          listener: (context, state) {
+            if(state.status == SplashStatus.loaded){
+              Future.delayed(Duration(seconds: 3),(){
+                Navigator.pushNamedAndRemoveUntil(context, Routes.homePage, (_)=>false);
+              });
+            }
+            // handle navigation or snackbars
+          },
+          builder: (context, state) {
+            switch (state.status) {
+              case SplashStatus.initial:
+                return const Scaffold(
+                  body: Center(child: CircularProgressIndicator()),
+                );
+              case SplashStatus.loaded:
+                return SplashLoadedPage();
+              case SplashStatus.error:
+                return Scaffold(
+                  body: Center(
+                    child: Text(state.error ?? "An error occurred"),
+                  ),
+                );
+              default:
+                return const Scaffold(
+                  body: Center(child: Text("Unknown state")),
+                );
+            }
+          },
+        ),
       ),
     );
   }
