@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_orders/presentation/screens/bottom_nav/view.dart';
 import 'package:food_orders/presentation/screens/cart/view.dart';
 import 'package:food_orders/presentation/screens/home/view.dart';
 import 'package:food_orders/presentation/screens/orders/view.dart';
@@ -11,6 +12,7 @@ static const String homePage = '/home';
 static const String orderPage = '/orders';
 static const String cartPage = '/cart';
 static const String searchPage = '/search';
+static const String bottomNavPage = '/bottomNavPage';
 }
 
 class RouteGenerator {
@@ -26,7 +28,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const OrdersPage());
   case Routes.searchPage:
         return MaterialPageRoute(builder: (_) => const SearchProdutsPage());
-
+ case Routes.bottomNavPage:
+        return MaterialPageRoute(builder: (_) => const BottomNavPage());
       default:
         return unDefinedRoute();
     }
