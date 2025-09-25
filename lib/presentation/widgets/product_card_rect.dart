@@ -28,8 +28,8 @@ class RectangleProductCard extends StatelessWidget {
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [Colors.transparent, Colors.black.withOpacity(0.7)],
-                  stops: const [0.6, 1.0],
+                  colors: [Colors.transparent, Colors.orange.withOpacity(0.7)],
+                  stops: const [0.3, 1.0],
                 ),
               ),
             ),

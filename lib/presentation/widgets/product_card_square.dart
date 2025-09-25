@@ -28,7 +28,7 @@ class SquareProductCard extends StatelessWidget {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [Colors.transparent, Colors.black.withOpacity(0.7)],
-                  stops: const [0.6, 1.0],
+                  stops: const [0.2, 1.0],
                 ),
               ),
             ),
