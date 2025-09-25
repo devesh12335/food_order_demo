@@ -19,7 +19,7 @@ class SplashPage extends StatelessWidget {
           listener: (context, state) {
             if(state.status == SplashStatus.loaded){
               Future.delayed(Duration(seconds: 3),(){
-                Navigator.pushNamedAndRemoveUntil(context, Routes.homePage, (_)=>false);
+                Navigator.pushNamedAndRemoveUntil(context, Routes.bottomNavPage, (_)=>false);
               });
             }
             // handle navigation or snackbars
