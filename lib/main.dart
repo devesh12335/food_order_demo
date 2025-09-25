@@ -99,7 +99,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       onGenerateRoute: RouteGenerator.getRoute,
-      initialRoute: Routes.authPage,
+      initialRoute: Routes.splashPage,
       theme: getApplicationTheme(),
     
       
