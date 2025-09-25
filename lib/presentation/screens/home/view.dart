@@ -179,7 +179,9 @@ class HomeLoadedPage extends StatelessWidget {
                   itemCount: state.allStoreList!.data!.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) =>
-                      RectangleProductCard(product: state.allStoreList!.data![index]),
+                      InkWell(
+                        onTap: () => context.read<HomeBloc>().add(onStoreTapEvent(context: context,store: state.allStoreList!.data![index])),
+                        child: RectangleProductCard(product: state.allStoreList!.data![index])),
                 ),
               ),
           
