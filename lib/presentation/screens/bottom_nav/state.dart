@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:food_orders/presentation/screens/cart/view.dart';
 import 'package:food_orders/presentation/screens/home/view.dart';
 import 'package:food_orders/presentation/screens/orders/view.dart';
 
@@ -21,7 +22,7 @@ class BottomNavState extends Equatable {
   factory BottomNavState.initial() => const BottomNavState(
     status: BottomNavStatus.initial,
     selectedIndex: 0,
-    screenList: [HomePage(),OrdersPage()]
+    screenList: [HomePage(),OrdersPage(),CartPage()]
   );
 
   BottomNavState copyWith({

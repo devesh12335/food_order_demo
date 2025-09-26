@@ -25,7 +25,7 @@ class CartPage extends StatelessWidget {
         },
         builder: (context, state) {
           switch (state.status) {
-            case CartStatus.initial:
+            case CartStatus.loading:
               return const Scaffold(
                 body: Center(child: CircularProgressIndicator()),
               );
@@ -92,7 +92,7 @@ class CartLoadedPage extends StatelessWidget {
 
   Widget _buildCheckoutButton(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(15.0),
+      padding: const EdgeInsets.only(bottom: 50.0,left: 15,right: 15),
       child: ElevatedButton(
         onPressed: () {
           context.read<CartBloc>().add(CheckoutEvent(context: context));
@@ -110,10 +110,10 @@ class CartLoadedPage extends StatelessWidget {
           ),
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Padding(
-              padding: EdgeInsets.only(left: 15.0),
+              padding: EdgeInsets.only(right: 15.0),
               child: Text(
                 'Proceed to Checkout',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),

@@ -20,12 +20,12 @@ class HomePage extends StatelessWidget {
         },
         builder: (context, state) {
           switch (state.status) {
-            case HomeStatus.initial:
+            case HomeStatus.loading:
               return const Scaffold(
                 body: Center(child: CircularProgressIndicator()),
               );
             case HomeStatus.loaded:
-              return HomeLoadedPage(state: state);
+              return HomeLoadedPage(state1: state);
             case HomeStatus.error:
               return Scaffold(
                 body: Center(child: Text(state.error ?? "An error occurred")),
@@ -40,11 +40,12 @@ class HomePage extends StatelessWidget {
 }
 
 class HomeLoadedPage extends StatelessWidget {
-  HomeState state;
-  HomeLoadedPage({super.key, required this.state});
+  HomeState state1;
+  HomeLoadedPage({super.key, required this.state1});
 
   @override
   Widget build(BuildContext context) {
+     final state = context.watch<HomeBloc>().state; 
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,

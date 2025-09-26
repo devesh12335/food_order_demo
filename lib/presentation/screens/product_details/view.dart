@@ -20,7 +20,7 @@ class ProductDetailsPage extends StatelessWidget {
         },
         builder: (context, state) {
           switch (state.status) {
-            case ProductDetailsStatus.initial:
+            case ProductDetailsStatus.loading:
               return const Scaffold(
                 body: Center(child: CircularProgressIndicator()),
               );

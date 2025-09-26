@@ -18,7 +18,7 @@ class BottomNavPage extends StatelessWidget {
         },
         builder: (context, state) {
           switch (state.status) {
-            case BottomNavStatus.initial:
+            case BottomNavStatus.loading:
               return const Scaffold(
                 body: Center(child: CircularProgressIndicator()),
               );
@@ -82,6 +82,10 @@ class BottomNavLoadedPage extends StatelessWidget {
             BottomNavigationBarItem(
               icon: Icon(Icons.dining_outlined),
               label: 'Orders',
+            ),
+             BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_cart),
+              label: 'Cart',
             ),
           ],
           currentIndex: state.selectedIndex ?? 0,

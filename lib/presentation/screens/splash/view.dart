@@ -26,7 +26,7 @@ class SplashPage extends StatelessWidget {
           },
           builder: (context, state) {
             switch (state.status) {
-              case SplashStatus.initial:
+              case SplashStatus.loading:
                 return const Scaffold(
                   body: Center(child: CircularProgressIndicator()),
                 );

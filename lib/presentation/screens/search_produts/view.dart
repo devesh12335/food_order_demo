@@ -18,7 +18,7 @@ class SearchProdutsPage extends StatelessWidget {
         },
         builder: (context, state) {
           switch (state.status) {
-            case SearchProdutsStatus.initial:
+            case SearchProdutsStatus.loading:
               return const Scaffold(
                 body: Center(child: CircularProgressIndicator()),
               );

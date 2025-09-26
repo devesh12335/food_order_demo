@@ -24,4 +24,6 @@ class onSearchEvent extends HomeEvent {
 }
 
 
-class HomeInitEvent extends HomeEvent {}
+class HomeInitEvent extends HomeEvent {
+  HomeInitEvent();
+}

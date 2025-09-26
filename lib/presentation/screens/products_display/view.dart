@@ -21,7 +21,7 @@ class ProductsDisplayPage extends StatelessWidget {
         },
         builder: (context, state) {
           switch (state.status) {
-            case ProductsDisplayStatus.initial:
+            case ProductsDisplayStatus.loading:
               return const Scaffold(
                 body: Center(child: CircularProgressIndicator()),
               );
@@ -46,12 +46,13 @@ class ProductsDisplayPage extends StatelessWidget {
 
 class ProductsDisplayLoadedPage extends StatelessWidget {
   ProductsDisplayState state;
+   
   Store store;
    ProductsDisplayLoadedPage({super.key,required this.state,required this.store});
 
   @override
   Widget build(BuildContext context) {
-     
+    
 
       return Scaffold(body: DefaultTabController(
       length: 3,
