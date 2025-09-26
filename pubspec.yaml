@@ -32,6 +32,7 @@ dependencies:
   equatable: ^2.0.7
   dev_bloc_cli: ^0.0.6
   dio: ^5.9.0
+  intl: ^0.20.2
 
 dev_dependencies:
   flutter_test:

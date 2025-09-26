@@ -13,14 +13,14 @@ class SquareProductCard extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Stack(
         children: [
-          // Background Image
+        
           Positioned.fill(
             child: Image.network(
               product.image!,
               fit: BoxFit.cover,
             ),
           ),
-          // Faded Shadow Gradient
+          
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(
@@ -33,7 +33,7 @@ class SquareProductCard extends StatelessWidget {
               ),
             ),
           ),
-          // Product Name and Ratings
+          
           Positioned(
             bottom: 12,
             left: 12,

@@ -13,7 +13,7 @@ class RectangleProductCard extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Stack(
         children: [
-          // Background Image
+          
           AspectRatio(
             aspectRatio: 16 / 9,
             child: Image.network(
@@ -21,7 +21,7 @@ class RectangleProductCard extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          // Faded Shadow Gradient
+         
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(
@@ -34,7 +34,7 @@ class RectangleProductCard extends StatelessWidget {
               ),
             ),
           ),
-          // Product Name and Ratings
+         
           Positioned(
             bottom: 12,
             left: 12,

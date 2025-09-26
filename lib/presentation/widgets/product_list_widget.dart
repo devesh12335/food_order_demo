@@ -21,7 +21,7 @@ class ProductListWidget extends StatelessWidget {
   }
 }
 
-// The new card widget for a single product
+
 class ProductCard extends StatelessWidget {
   final FoodItem product;
   const ProductCard({super.key, required this.product});

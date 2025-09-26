@@ -16,8 +16,7 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final cartItemList = (ModalRoute.of(context)!.settings.arguments as Map<String,dynamic>);
-    //  final cartItems = (cartItemList['list'] as List<Map<String,dynamic>>).map((obj)=>FoodItem.fromJson(obj)).toList();
+   
     return BlocProvider(
       create: (_) => CartBloc()..add(CartInitEvent()),
       child: BlocConsumer<CartBloc, CartState>(
@@ -51,7 +50,7 @@ class CartPage extends StatelessWidget {
 
 class CartLoadedPage extends StatelessWidget {
   CartState state;
-  // List<FoodItem> cartItems;
+ 
   CartLoadedPage({super.key,required this.state});
 
 
@@ -85,7 +84,7 @@ class CartLoadedPage extends StatelessWidget {
               },
             ),
       
-      // Checkout/Total Button at the bottom
+
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: _buildCheckoutButton(context),
     );
@@ -104,10 +103,10 @@ class CartLoadedPage extends StatelessWidget {
           );
         },
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.deepOrange, // Checkout action color
+          backgroundColor: Colors.deepOrange, 
           padding: const EdgeInsets.symmetric(vertical: 15.0),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12.0), // Curved corners for button
+            borderRadius: BorderRadius.circular(12.0), 
           ),
         ),
         child: Row(
@@ -140,7 +139,7 @@ class CartLoadedPage extends StatelessWidget {
       elevation: 3,
       margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.0), // Curved corners
+        borderRadius: BorderRadius.circular(15.0), 
       ),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -149,7 +148,6 @@ class CartLoadedPage extends StatelessWidget {
           children: [
             Row(
               children: [
-                // Product Image (Placeholder or URL)
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10.0),
                   child: item.item.image != null && item.item.image!.isNotEmpty
@@ -174,8 +172,7 @@ class CartLoadedPage extends StatelessWidget {
                         ),
                 ),
                 const SizedBox(width: 15),
-                
-                // Item Details
+               
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -201,7 +198,7 @@ class CartLoadedPage extends StatelessWidget {
                   ),
                 ),
                 
-                // Price
+                
                 Text(
                   '\u{20B9}${(item.item.price!).toStringAsFixed(2)}',
                   style: const TextStyle(

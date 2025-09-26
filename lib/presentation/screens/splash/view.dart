@@ -88,7 +88,7 @@ class SplashLoadedPage extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // App Logo
+               
                 Padding(
                   padding: EdgeInsets.only(bottom: 16.0),
                   child: CircleAvatar(

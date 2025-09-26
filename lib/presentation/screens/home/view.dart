@@ -110,7 +110,7 @@ class HomeLoadedPage extends StatelessWidget {
                         : null,
                   ),
                   onSubmitted: (value) {
-                    // This is where you would handle the search query
+                    
                     context.read<HomeBloc>().add(onSearchEvent(query: value));
                     print('Search query submitted: $value');
                   },

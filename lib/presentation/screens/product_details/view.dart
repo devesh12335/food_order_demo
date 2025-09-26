@@ -103,7 +103,7 @@ class ProductDetailsLoadedPage extends StatelessWidget {
             
             const SizedBox(height: 20),
 
-            // Item Name and Veg/Non-Veg
+            
             _buildInfoCard(
               children: [
                 Row(
@@ -140,7 +140,7 @@ class ProductDetailsLoadedPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
 
-                // Price
+                
                 Text(
                   foodItem.price != null
                       ? '\$${foodItem.price!.toStringAsFixed(2)}'
@@ -155,7 +155,7 @@ class ProductDetailsLoadedPage extends StatelessWidget {
             ),
             const SizedBox(height: 15),
 
-            // Description
+            
             _buildInfoCard(
               title: 'Description',
               children: [
@@ -170,7 +170,7 @@ class ProductDetailsLoadedPage extends StatelessWidget {
             ),
             const SizedBox(height: 15),
 
-            // Category and Rating
+           
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -228,8 +228,7 @@ class ProductDetailsLoadedPage extends StatelessWidget {
   }
 
   Widget _buildAddToCartButton(BuildContext context) {
-    // The button uses a Card to give it elevation and curved corners,
-    // and is placed in a Padding wrapper at the bottom.
+ 
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Card(
@@ -240,7 +239,7 @@ class ProductDetailsLoadedPage extends StatelessWidget {
         child: InkWell(
           onTap: () {
             context.read<ProductDetailsBloc>().add(GoToCartEvent(item: foodItem));
-            // Placeholder action for Add to Cart
+          
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text('${foodItem.name ?? 'Item'} added to cart!'),
@@ -252,7 +251,7 @@ class ProductDetailsLoadedPage extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 15.0),
             decoration: BoxDecoration(
-              color: Colors.deepOrange, // A vibrant color for the action
+              color: Colors.deepOrange, 
               borderRadius: BorderRadius.circular(15.0),
             ),
             child: Row(
@@ -281,7 +280,7 @@ class ProductDetailsLoadedPage extends StatelessWidget {
     return Card(
       elevation: 4,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.0), // Curved Corners
+        borderRadius: BorderRadius.circular(15.0), 
       ),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
