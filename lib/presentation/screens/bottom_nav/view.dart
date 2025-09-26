@@ -23,17 +23,13 @@ class BottomNavPage extends StatelessWidget {
                 body: Center(child: CircularProgressIndicator()),
               );
             case BottomNavStatus.loaded:
-              return BottomNavLoadedPage(state: state,);
+              return BottomNavLoadedPage(state: state);
             case BottomNavStatus.error:
               return Scaffold(
-                body: Center(
-                  child: Text(state.error ?? "An error occurred"),
-                ),
+                body: Center(child: Text(state.error ?? "An error occurred")),
               );
             default:
-              return const Scaffold(
-                body: Center(child: Text("Unknown state")),
-              );
+              return const Scaffold(body: Center(child: Text("Unknown state")));
           }
         },
       ),
@@ -43,15 +39,24 @@ class BottomNavPage extends StatelessWidget {
 
 class BottomNavLoadedPage extends StatelessWidget {
   BottomNavState state;
-   BottomNavLoadedPage({super.key,required this.state});
+  BottomNavLoadedPage({super.key, required this.state});
 
   @override
   Widget build(BuildContext context) {
-     return Scaffold(
+    return Scaffold(
       extendBody: true,
       body: Padding(
         padding: const EdgeInsets.only(bottom: 35.0),
-        child: state.screenList![state.selectedIndex??0],
+        child: state.screenList![state.selectedIndex ?? 0],
+      ),
+
+      floatingActionButton: IconButton.filled(
+        onPressed: () =>
+            context.read<BottomNavBloc>().add(GoToCartEvent(context: context)),
+        icon: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: const Icon(Icons.shopping_cart, color: Colors.white),
+        ),
       ),
       bottomNavigationBar: Container(
         clipBehavior: Clip.hardEdge,
@@ -62,15 +67,10 @@ class BottomNavLoadedPage extends StatelessWidget {
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withAlpha(
-                20,
-              ), 
-              blurRadius: 10.0, 
-              spreadRadius: 0.0, 
-              offset: Offset(
-                0.0,
-                -10.0,
-              ), 
+              color: Colors.black.withAlpha(20),
+              blurRadius: 10.0,
+              spreadRadius: 0.0,
+              offset: Offset(0.0, -10.0),
             ),
           ],
         ),
@@ -78,18 +78,17 @@ class BottomNavLoadedPage extends StatelessWidget {
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
             BottomNavigationBarItem(
               icon: Icon(Icons.dining_outlined),
               label: 'Orders',
             ),
           ],
-          currentIndex: state.selectedIndex??0,
+          currentIndex: state.selectedIndex ?? 0,
           selectedItemColor: Colors.deepOrange,
-          onTap: (val)=>context.read<BottomNavBloc>().add(onItemTappedEvent(selectedIndex: val)),
+          onTap: (val) => context.read<BottomNavBloc>().add(
+            onItemTappedEvent(selectedIndex: val),
+          ),
         ),
       ),
     );

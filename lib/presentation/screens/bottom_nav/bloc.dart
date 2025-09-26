@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_orders/presentation/resources/router/route_manager.dart';
 
 import 'events.dart';
 import 'state.dart';
@@ -8,7 +10,19 @@ class BottomNavBloc extends Bloc<BottomNavEvent, BottomNavState> {
   BottomNavBloc() : super(BottomNavState.initial()) {
     on<BottomNavInitEvent>(_onInit);
     on<onItemTappedEvent>(_ononItemTapped);
+  on<GoToCartEvent>(_onGoToCart);
 }
+
+  Future<void> _onGoToCart(GoToCartEvent event, Emitter<BottomNavState> emit) async {
+    try {
+        Navigator.pushNamed(event.context, Routes.cartPage);
+    } catch (e) {
+      emit(state.copyWith(status: BottomNavStatus.error, error: e.toString()));
+    }
+  }
+
+
+
 
   Future<void> _ononItemTapped(onItemTappedEvent event, Emitter<BottomNavState> emit) async {
     try {

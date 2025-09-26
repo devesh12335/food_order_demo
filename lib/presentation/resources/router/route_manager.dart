@@ -25,7 +25,9 @@ class RouteGenerator {
       case Routes.splashPage:
         return MaterialPageRoute(builder: (_) => const SplashPage());
       case Routes.cartPage:
-        return MaterialPageRoute(builder: (_) => const CartPage());
+        return MaterialPageRoute(builder: (_) => const CartPage(),settings: RouteSettings(
+          arguments: routeSettings.arguments
+        ));
       case Routes.homePage:
         return MaterialPageRoute(builder: (_) => const HomePage());
       case Routes.orderPage:

@@ -239,6 +239,7 @@ class ProductDetailsLoadedPage extends StatelessWidget {
         ),
         child: InkWell(
           onTap: () {
+            context.read<ProductDetailsBloc>().add(GoToCartEvent(item: foodItem));
             // Placeholder action for Add to Cart
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
