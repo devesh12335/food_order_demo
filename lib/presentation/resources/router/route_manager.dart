@@ -3,6 +3,7 @@ import 'package:food_orders/presentation/screens/bottom_nav/view.dart';
 import 'package:food_orders/presentation/screens/cart/view.dart';
 import 'package:food_orders/presentation/screens/home/view.dart';
 import 'package:food_orders/presentation/screens/orders/view.dart';
+import 'package:food_orders/presentation/screens/product_details/view.dart';
 import 'package:food_orders/presentation/screens/products_display/view.dart';
 import 'package:food_orders/presentation/screens/search_produts/view.dart';
 import 'package:food_orders/presentation/screens/splash/view.dart';
@@ -15,6 +16,7 @@ class Routes {
   static const String searchPage = '/search';
   static const String bottomNavPage = '/bottomNavPage';
   static const String productDisplayPage = '/productDisplayPage';
+  static const String productDetailsPage = '/productDetailsPage';
 }
 
 class RouteGenerator {
@@ -34,6 +36,11 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const BottomNavPage());
       case Routes.productDisplayPage:
         return MaterialPageRoute(builder: (_) => const ProductsDisplayPage(),settings: RouteSettings(
+          arguments: routeSettings.arguments
+        ));
+
+         case Routes.productDetailsPage:
+        return MaterialPageRoute(builder: (_) => const ProductDetailsPage(),settings: RouteSettings(
           arguments: routeSettings.arguments
         ));
       default:

@@ -16,7 +16,19 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<HomeInitEvent>(_onInit);
     on<onSearchEvent>(_ononSearch);
     on<onStoreTapEvent>(_ononStoreTap);
+    on<productDetailsEvent>(_onproductDetails);
+}
+
+  Future<void> _onproductDetails(productDetailsEvent event, Emitter<HomeState> emit) async {
+    try {
+        Navigator.pushNamed(event.context, Routes.productDetailsPage,arguments: event.item.toJson());
+    } catch (e) {
+      emit(state.copyWith(status: HomeStatus.error, error: e.toString()));
+    }
   }
+
+
+
 
   Future<void> _ononStoreTap(
     onStoreTapEvent event,
@@ -26,7 +38,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       Navigator.pushNamed(
         event.context,
         Routes.productDisplayPage,
-        arguments: event.store,
+        arguments: event.store.toJson(),
       );
     } catch (e) {
       emit(state.copyWith(status: HomeStatus.error, error: e.toString()));

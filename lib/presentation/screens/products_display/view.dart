@@ -12,7 +12,7 @@ class ProductsDisplayPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final store = ModalRoute.of(context)!.settings.arguments as Store;
+    final store = Store.fromJson(ModalRoute.of(context)!.settings.arguments as Map<String,dynamic>) ;
     return BlocProvider(
       create: (_) => ProductsDisplayBloc()..add(ProductsDisplayInitEvent()),
       child: BlocConsumer<ProductsDisplayBloc, ProductsDisplayState>(

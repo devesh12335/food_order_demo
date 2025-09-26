@@ -152,7 +152,9 @@ class HomeLoadedPage extends StatelessWidget {
                   itemCount: 4,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) =>
-                      SquareProductCard(product: state.allFoodList!.data![index]),
+                      InkWell(
+                        onTap: () => context.read<HomeBloc>().add(productDetailsEvent(context: context, item:  state.allFoodList!.data![index])),
+                        child: SquareProductCard(product: state.allFoodList!.data![index])),
                 ),
               ),
           
@@ -209,7 +211,9 @@ class HomeLoadedPage extends StatelessWidget {
                  itemCount: state.allFoodList!.data!.length,
                  scrollDirection: Axis.vertical,
                  itemBuilder: (context, index) =>
-                     SquareProductCard(product: state.allFoodList!.data![index]),
+                     InkWell(
+                      onTap: () => context.read<HomeBloc>().add(productDetailsEvent(context: context, item:  state.allFoodList!.data![index])),
+                      child: SquareProductCard(product: state.allFoodList!.data![index])),
                ),
 
                SizedBox(height: 50,)
