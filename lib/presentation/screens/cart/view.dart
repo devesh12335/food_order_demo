@@ -3,7 +3,9 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_orders/global_state/globalState.dart';
+import 'package:food_orders/models/cart_model.dart';
 import 'package:food_orders/models/food_list_model.dart';
+import 'package:food_orders/presentation/resources/color_manager.dart';
 
 import 'bloc.dart';
 import 'events.dart';
@@ -52,11 +54,7 @@ class CartLoadedPage extends StatelessWidget {
   // List<FoodItem> cartItems;
   CartLoadedPage({super.key,required this.state});
 
-  double get _totalPrice {
-    // Sums up all the prices (assuming price is in cents and converting to dollars)
-    final totalCents = GlobalState.instance.CartItemList.fold(0, (sum, item) => sum + (item.price ?? 0));
-    return double.parse("$totalCents") ;
-  }
+
   @override
   Widget build(BuildContext context) {
      return Scaffold(
@@ -65,7 +63,7 @@ class CartLoadedPage extends StatelessWidget {
         
         elevation: 10,
       ),
-      body: GlobalState.instance.CartItemList.isEmpty
+      body: state.cartItems!.isEmpty
           ? Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -81,9 +79,9 @@ class CartLoadedPage extends StatelessWidget {
           : ListView.builder(
               padding: const EdgeInsets.only(
                   top: 10.0, left: 16.0, right: 16.0, bottom: 100.0),
-              itemCount: GlobalState.instance.CartItemList.length,
+              itemCount: state.cartItems!.length,
               itemBuilder: (context, index) {
-                return _buildCartItem(GlobalState.instance.CartItemList[index]);
+                return _buildCartItem(state.cartItems![index],context);
               },
             ),
       
@@ -98,10 +96,10 @@ class CartLoadedPage extends StatelessWidget {
       padding: const EdgeInsets.all(15.0),
       child: ElevatedButton(
         onPressed: () {
-          // Placeholder for checkout logic
+          context.read<CartBloc>().add(CheckoutEvent(context: context));
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('Checking out total: \u{20B9}${_totalPrice.toStringAsFixed(2)}'),
+              content: Text('Checking out total: \u{20B9}${(state.totalPrice??0).toStringAsFixed(2)}'),
             ),
           );
         },
@@ -125,7 +123,7 @@ class CartLoadedPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(right: 15.0),
               child: Text(
-                '\u{20B9}${_totalPrice.toStringAsFixed(2)}',
+                '\u{20B9}${(state.totalPrice??0).toStringAsFixed(2)}',
                 style: const TextStyle(
                     fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
               ),
@@ -137,7 +135,7 @@ class CartLoadedPage extends StatelessWidget {
   
   }
 
-   Widget _buildCartItem(FoodItem item) {
+   Widget _buildCartItem(CartModel item,BuildContext context) {
     return Card(
       elevation: 3,
       margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
@@ -146,69 +144,90 @@ class CartLoadedPage extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
-        child: Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            // Product Image (Placeholder or URL)
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10.0),
-              child: item.image != null && item.image!.isNotEmpty
-                  ? Image.network(
-                      item.image!,
-                      width: 60,
-                      height: 60,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) =>
-                          Container(
-                        width: 60,
-                        height: 60,
-                        color: Colors.grey[300],
-                        child: const Icon(Icons.fastfood, color: Colors.grey),
+            Row(
+              children: [
+                // Product Image (Placeholder or URL)
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(10.0),
+                  child: item.item.image != null && item.item.image!.isNotEmpty
+                      ? Image.network(
+                          item.item.image!,
+                          width: 60,
+                          height: 60,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) =>
+                              Container(
+                            width: 60,
+                            height: 60,
+                            color: Colors.grey[300],
+                            child: const Icon(Icons.fastfood, color: Colors.grey),
+                          ),
+                        )
+                      : Container(
+                          width: 60,
+                          height: 60,
+                          color: Colors.grey[300],
+                          child: const Icon(Icons.fastfood, color: Colors.grey),
+                        ),
+                ),
+                const SizedBox(width: 15),
+                
+                // Item Details
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        item.item.name ?? 'Unknown Item',
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                    )
-                  : Container(
-                      width: 60,
-                      height: 60,
-                      color: Colors.grey[300],
-                      child: const Icon(Icons.fastfood, color: Colors.grey),
-                    ),
-            ),
-            const SizedBox(width: 15),
-            
-            // Item Details
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    item.name ?? 'Unknown Item',
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+                      const SizedBox(height: 4),
+                      Text(
+                        item.item.category ?? 'N/A',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.grey[600],
+                        ),
+                      ),
+                    ],
                   ),
-                  const SizedBox(height: 4),
-                  Text(
-                    item.category ?? 'N/A',
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey[600],
-                    ),
+                ),
+                
+                // Price
+                Text(
+                  '\u{20B9}${(item.item.price!).toStringAsFixed(2)}',
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.teal,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-            
-            // Price
-            Text(
-              '\u{20B9}${(item.price!).toStringAsFixed(2)}',
-              style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                color: Colors.teal,
+
+            SizedBox(
+              width: 100,height: 50,
+              child: FittedBox(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                  IconButton(onPressed: ()=>context.read<CartBloc>().add(increaseQtyEvent(item: item)), icon: Icon(Icons.add,color: ColorManager.primary,)),
+                  CircleAvatar(
+                    
+                    backgroundColor: ColorManager.primary.withAlpha(50),
+                    child: Text("${item.Quntity}",style: TextStyle(color: Colors.black),),),
+                   IconButton(onPressed: ()=>context.read<CartBloc>().add(decreaseQtyEvent(item: item)), icon: Icon(Icons.remove,color: ColorManager.primary,)),
+                ],),
               ),
-            ),
+            )
           ],
         ),
       ),
