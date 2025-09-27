@@ -26,10 +26,7 @@ void main() {
   late CartBloc cartBloc;
   late MockGlobalState mockGlobalState;
   late MockNavigatorObserver mockObserver;
-  // late FoodItem foodItem1;
-  // late FoodItem foodItem2;
-  // late CartModel cartItem1;
-  // late CartModel cartItem2;
+  
   
   setUpAll(() {
     registerFallbackValue(
@@ -73,7 +70,7 @@ void main() {
         CartState(
           status: CartStatus.loaded,
           cartItems: [cartItem1, cartItem2],
-          totalPrice: 100.0, // 1*10.0 + 1*5.0 = 15.0
+          totalPrice: 100.0, 
         ),
       ],
       verify: (_) {
@@ -101,13 +98,13 @@ void main() {
 
   group('increaseQtyEvent', () {
     final initialState = CartState(
-      cartItems: [cartItem1, cartItem2], // Qty: 1, 1. Total: 15.0
+      cartItems: [cartItem1, cartItem2], 
       totalPrice: 160.0,
       status: CartStatus.loaded,
     );
     
     final expectedCartItems = [
-      CartModel(Quntity: 2, item: foodItem1), // Qty: 2
+      CartModel(Quntity: 2, item: foodItem1),
       cartItem2,
     ];
 
@@ -116,15 +113,15 @@ void main() {
       build: () => cartBloc,
       seed: () => initialState,
       act: (bloc) => bloc.add(increaseQtyEvent(item: cartItem1)),
-      // Expect the state with updated quantity, followed by the state with updated total price
+      
       expect: () => [
         initialState.copyWith(
           cartItems: expectedCartItems,
-          totalPrice: 160.0, // Total price is still 15.0 before the second event
+          totalPrice: 160.0, 
         ),
         initialState.copyWith(
           cartItems: expectedCartItems,
-          totalPrice: 140.0, // (2*10.0) + (1*5.0) = 25.0
+          totalPrice: 140.0, 
         ),
       ],
     );
@@ -135,13 +132,13 @@ void main() {
   group('decreaseQtyEvent', () {
     final initialCartItem1 = CartModel(Quntity: 2, item: foodItem1);
     final initialState = CartState(
-      cartItems: [initialCartItem1, cartItem2], // Qty: 2, 1. Total: 25.0
+      cartItems: [initialCartItem1, cartItem2], 
       totalPrice: 280.0,
       status: CartStatus.loaded,
     );
     
     final expectedCartItems = [
-      CartModel(Quntity: 1, item: foodItem1), // Qty: 1
+      CartModel(Quntity: 1, item: foodItem1), 
       cartItem2,
     ];
 
@@ -153,11 +150,11 @@ void main() {
       expect: () => [
         initialState.copyWith(
           cartItems: expectedCartItems,
-          totalPrice: 280.0, // Before updateTotalPriceEvent runs
+          totalPrice: 280.0, 
         ),
         initialState.copyWith(
           cartItems: expectedCartItems,
-          totalPrice: 100.0, // (1*10.0) + (1*5.0) = 15.0
+          totalPrice: 100.0, 
         ),
       ],
     );
