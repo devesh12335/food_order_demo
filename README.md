@@ -94,8 +94,9 @@ A typical Flutter project structure:
 ```
 ## Workflow
 
-![Splash Screen](assets/screenshots/checkout.jpeg)
+![Splash Screen](assets/screenshots/splash.jpeg.jpeg)
 ![Home Screen](assets/screenshots/home.jpeg)
 ![product Screen](assets/screenshots/product.jpeg)
 ![Cart Screen](assets/screenshots/cart.png)
 ![Orders Screen](assets/screenshots/recent_orders.jpeg)
+![Orders Screen](assets/screenshots/checkout.jpeg)
