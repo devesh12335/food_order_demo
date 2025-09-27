@@ -10,7 +10,7 @@ A modern, cross-platform food ordering application built with **Flutter**.
 ![Splash Screen](assets/screenshots/cart.jpeg)
 ![Home Screen](assets/screenshots/home.jpeg)
 ![product Screen](assets/screenshots/product.jpeg)
-![Cart Screen](assets/screenshots/cart.jpeg)
+![Cart Screen]([assets/screenshots/cart.jpeg](https://github.com/devesh12335/food_order_demo/blob/master/assets/screenshots/cart.jpeg))
 ![Splash Screen](assets/screenshots/checkout.jpeg)
 ![Orders Screen](assets/screenshots/recent_orders.jpeg)
 
