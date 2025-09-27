@@ -5,14 +5,7 @@
 
 A modern, cross-platform food ordering application built with **Flutter**.
 
-##Workflow
 
-
-![Home Screen](assets/screenshots/app_logo.png)
-![product Screen](assets/screenshots/product.jpeg)
-![Cart Screen](assets/screenshots/cart.png)
-![Splash Screen](assets/screenshots/checkout.jpeg)
-![Orders Screen](assets/screenshots/recent_orders.jpeg)
 
 ## 🚀 Environment Overview
 
@@ -99,3 +92,11 @@ A typical Flutter project structure:
 
 ```
 ```
+## Workflow
+
+
+![Home Screen](assets/screenshots/home.jpeg)
+![product Screen](assets/screenshots/product.jpeg)
+![Cart Screen](assets/screenshots/cart.png)
+![Splash Screen](assets/screenshots/checkout.jpeg)
+![Orders Screen](assets/screenshots/recent_orders.jpeg)
