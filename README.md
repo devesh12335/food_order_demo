@@ -7,7 +7,7 @@ A modern, cross-platform food ordering application built with **Flutter**.
 
 ##Workflow
 
-![Splash Screen](assets/screenshots/splash.jpeg)
+![Splash Screen](assets/screenshots/cart.jpeg)
 ![Home Screen](assets/screenshots/home.jpeg)
 ![product Screen](assets/screenshots/product.jpeg)
 ![Cart Screen](assets/screenshots/cart.jpeg)
