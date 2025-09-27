@@ -33,6 +33,7 @@ dependencies:
   dev_bloc_cli: ^0.0.6
   dio: ^5.9.0
   intl: ^0.20.2
+  build_runner: ^2.7.1
 
 dev_dependencies:
   flutter_test:
@@ -45,7 +46,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
   bloc_test: ^10.0.0
-
+  mockito: ^5.4.4
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
