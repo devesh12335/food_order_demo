@@ -20,6 +20,7 @@ class CartState extends Equatable {
 
   factory CartState.initial() =>  CartState(
     status: CartStatus.initial,
+   
   );
 
   CartState copyWith({

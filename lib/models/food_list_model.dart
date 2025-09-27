@@ -1,4 +1,6 @@
-class FoodListModel {
+import 'package:equatable/equatable.dart';
+
+class FoodListModel extends Equatable{
   List<FoodItem>? data;
 
   FoodListModel({this.data});
@@ -19,9 +21,13 @@ class FoodListModel {
     }
     return data;
   }
+  
+  @override
+  // TODO: implement props
+  List<Object?> get props => [data];
 }
 
-class FoodItem {
+class FoodItem extends Equatable{
   int? id;
   String? name;
   String? description;
@@ -67,6 +73,10 @@ class FoodItem {
     foodItem['category'] = this.category;
     return foodItem;
   }
+  
+  @override
+  // TODO: implement props
+  List<Object?> get props => [id,name,description,image,price,veg,rating,category];
 }
 
 class Rating {

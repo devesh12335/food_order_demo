@@ -86,7 +86,10 @@ add(updateTotalPriceEvent());
 
     return accumulator + (price * quantity);
   });
-  emit(state.copyWith(totalPrice: double.parse("$total")));
+  if(total != state.totalPrice){
+ emit(state.copyWith(totalPrice: double.parse("$total")));
+  }
+ 
     } catch (e) {
       emit(state.copyWith(status: CartStatus.error, error: e.toString()));
     }
@@ -99,8 +102,9 @@ add(updateTotalPriceEvent());
       List<CartModel> cartList = products
           .map((e) => CartModel(Quntity: 1, item: e))
           .toList();
-          add(updateTotalPriceEvent());
-      emit(state.copyWith(status: CartStatus.loaded, cartItems: cartList));
+         
+      emit(state.copyWith(status: CartStatus.loaded, cartItems: cartList,totalPrice: 0.0));
+       add(updateTotalPriceEvent());
     } catch (e) {
       emit(state.copyWith(status: CartStatus.error, error: e.toString()));
     }
